@@ -17,5 +17,6 @@
     <string name="key_divide">/</string>
     <string name="key_clean">[C]</string>
     <string name="key_del">[DEL]</string>
+    <string name="key_equally">=</string>
 
 </resources>
