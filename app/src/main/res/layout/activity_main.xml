@@ -4,9 +4,296 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/calculator_background"
+    app:layout_anchorGravity="bottom"
     tools:context=".MainActivity">
 
 
+    <TextView
+        android:id="@+id/history"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/text_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="4" />
+
+    <TextView
+        android:id="@+id/text_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/orange_50"
+        android:gravity="bottom"
+        android:textColor="@color/orange"
+        app:layout_constraintBottom_toTopOf="@id/key_7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/history"
+        app:layout_constraintVertical_weight="2" />
+
+    <Button
+        android:id="@+id/key_7"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/orange_80"
+        android:text="@string/key_7"
+        android:textColor="@color/maroon"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toTopOf="@id/key_4"
+        app:layout_constraintEnd_toStartOf="@id/key_8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view"
+        app:layout_constraintVertical_weight="2"
+        app:layout_constraintWidth_percent=".26" />
+
+
+    <Button
+        android:id="@+id/key_8"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/orange_80"
+        android:text="@string/key_8"
+        android:textColor="@color/maroon"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="@id/key_7"
+        app:layout_constraintEnd_toStartOf="@id/key_9"
+        app:layout_constraintStart_toEndOf="@id/key_7"
+        app:layout_constraintTop_toTopOf="@id/key_7"
+        app:layout_constraintWidth_percent=".26" />
+
+    <Button
+        android:id="@+id/key_9"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/orange_80"
+        android:text="@string/key_9"
+        android:textColor="@color/maroon"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="@id/key_7"
+        app:layout_constraintEnd_toStartOf="@id/key_del"
+        app:layout_constraintStart_toEndOf="@id/key_8"
+        app:layout_constraintTop_toTopOf="@id/key_7"
+        app:layout_constraintWidth_percent=".26" />
+
+    <Button
+        android:id="@+id/key_del"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/maroon"
+        android:text="@string/key_del"
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="@id/key_7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/key_9"
+        app:layout_constraintTop_toTopOf="@id/key_7"
+        app:layout_constraintWidth_percent=".15" />
+
+    <Button
+        android:id="@+id/key_4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/orange_80"
+        android:text="@string/key_4"
+        android:textColor="@color/maroon"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toTopOf="@id/key_1"
+        app:layout_constraintEnd_toEndOf="@id/key_7"
+        app:layout_constraintStart_toStartOf="@id/key_7"
+        app:layout_constraintTop_toBottomOf="@id/key_7"
+        app:layout_constraintVertical_weight="2" />
+
+    <Button
+        android:id="@+id/key_5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/orange_80"
+        android:text="@string/key_5"
+        android:textColor="@color/maroon"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toTopOf="@id/key_2"
+        app:layout_constraintEnd_toEndOf="@id/key_8"
+        app:layout_constraintStart_toStartOf="@id/key_8"
+        app:layout_constraintTop_toBottomOf="@id/key_8"
+        app:layout_constraintTop_toTopOf="@id/key_4" />
+
+    <Button
+        android:id="@+id/key_6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/orange_80"
+        android:text="@string/key_6"
+        android:textColor="@color/maroon"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toTopOf="@id/key_3"
+        app:layout_constraintEnd_toEndOf="@id/key_9"
+        app:layout_constraintStart_toStartOf="@id/key_9"
+        app:layout_constraintTop_toBottomOf="@id/key_9"
+        app:layout_constraintTop_toTopOf="@id/key_4" />
+
+    <Button
+        android:id="@+id/key_clean"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/maroon"
+        android:text="@string/key_clean"
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="@id/key_6"
+        app:layout_constraintEnd_toEndOf="@id/key_del"
+        app:layout_constraintStart_toStartOf="@id/key_del"
+        app:layout_constraintTop_toBottomOf="@id/key_del" />
+
+    <Button
+        android:id="@+id/key_1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/orange_80"
+        android:text="@string/key_1"
+        android:textColor="@color/maroon"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toTopOf="@id/key_0"
+        app:layout_constraintEnd_toEndOf="@id/key_4"
+        app:layout_constraintStart_toStartOf="@id/key_4"
+        app:layout_constraintTop_toBottomOf="@id/key_4"
+        app:layout_constraintVertical_weight="2" />
+
+    <Button
+        android:id="@+id/key_2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/orange_80"
+        android:text="@string/key_2"
+        android:textColor="@color/maroon"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toTopOf="@id/key_0"
+        app:layout_constraintEnd_toEndOf="@id/key_5"
+        app:layout_constraintStart_toStartOf="@id/key_5"
+        app:layout_constraintTop_toBottomOf="@id/key_5" />
+
+    <Button
+        android:id="@+id/key_3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/orange_80"
+        android:text="@string/key_3"
+        android:textColor="@color/maroon"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toTopOf="@id/key_0"
+        app:layout_constraintEnd_toEndOf="@id/key_6"
+        app:layout_constraintStart_toStartOf="@id/key_6"
+        app:layout_constraintTop_toBottomOf="@id/key_6" />
+
+    <Button
+        android:id="@+id/key_summa"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/maroon"
+        android:text="@string/key_summa"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/key_minus"
+        app:layout_constraintStart_toStartOf="@id/key_0"
+        app:layout_constraintTop_toBottomOf="@id/key_0"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintWidth_percent=".23" />
+
+    <Button
+        android:id="@+id/key_0"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/orange_50"
+        android:text="@string/key_0"
+        android:textColor="@color/maroon"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toTopOf="@id/key_summa"
+        app:layout_constraintEnd_toEndOf="@id/key_1"
+        app:layout_constraintStart_toStartOf="@id/key_1"
+        app:layout_constraintTop_toBottomOf="@id/key_1"
+        app:layout_constraintVertical_weight="2" />
+
+    <Button
+        android:id="@+id/key_dot"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/orange_50"
+        android:text="@string/key_dot"
+        android:textColor="@color/maroon"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="@id/key_0"
+        app:layout_constraintEnd_toEndOf="@id/key_2"
+        app:layout_constraintStart_toStartOf="@id/key_2"
+        app:layout_constraintTop_toTopOf="@id/key_0" />
+
+    <Button
+        android:id="@+id/key_plus_minus"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/orange_50"
+        android:text="@string/key_plus_minus"
+        android:textColor="@color/maroon"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toBottomOf="@id/key_0"
+        app:layout_constraintEnd_toEndOf="@id/key_3"
+        app:layout_constraintStart_toStartOf="@id/key_3"
+        app:layout_constraintTop_toTopOf="@id/key_0" />
+
+    <Button
+        android:id="@+id/key_minus"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/maroon"
+        android:text="@string/key_minus"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/key_multiply"
+        app:layout_constraintStart_toEndOf="@id/key_summa"
+        app:layout_constraintTop_toBottomOf="@id/key_0"
+        app:layout_constraintWidth_percent=".23" />
+
+    <Button
+        android:id="@+id/key_multiply"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/maroon"
+        android:text="@string/key_multiply"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/key_divide"
+        app:layout_constraintStart_toEndOf="@id/key_minus"
+        app:layout_constraintTop_toBottomOf="@id/key_0"
+        app:layout_constraintWidth_percent=".23" />
+
+    <Button
+        android:id="@+id/key_divide"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/maroon"
+        android:text="@string/key_divide"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/key_multiply"
+        app:layout_constraintTop_toBottomOf="@id/key_0"
+        app:layout_constraintWidth_percent=".23" />
+
+    <Button
+        android:id="@+id/key_equally"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:backgroundTint="@color/maroon"
+        android:text="@string/key_equally"
+        android:textColor="@color/white"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toTopOf="@id/key_divide"
+        app:layout_constraintEnd_toEndOf="@id/key_clean"
+        app:layout_constraintStart_toStartOf="@id/key_clean"
+        app:layout_constraintTop_toBottomOf="@id/key_clean" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
