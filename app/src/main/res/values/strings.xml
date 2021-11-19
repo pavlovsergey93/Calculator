@@ -18,5 +18,6 @@
     <string name="key_clean">[C]</string>
     <string name="key_del">[DEL]</string>
     <string name="key_equally">=</string>
+    <string name="key_plus_minus">+/-</string>
 
 </resources>
