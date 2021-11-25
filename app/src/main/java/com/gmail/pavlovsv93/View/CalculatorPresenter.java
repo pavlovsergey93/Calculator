@@ -68,21 +68,19 @@ public class CalculatorPresenter {
                 a = calculatorInterface.resultOperation(a, -1, operation);
                 viewInterface.showResult(String.valueOf(a));
             }
+        } else if (previousOperator != null) {
+            showHistoryView(String.valueOf(previousOperator));
+            a = calculatorInterface.resultOperation(a, b, previousOperator);
+            showHistoryView(String.valueOf(b));
+            b = 0.0;
         } else {
-            if (b != null && previousOperator != null) {
-                showHistoryView(String.valueOf(previousOperator));
-                a = calculatorInterface.resultOperation(a, b, previousOperator);
-                showHistoryView(String.valueOf(b));
-                b = null;
-            } else {
-                b = 0.0;
-                if (viewInterface.getHistory() == "") {
-                    showHistoryView(String.valueOf(a));
-                }
+            if (String.valueOf(viewInterface.getHistory()) == "") {
+                showHistoryView(String.valueOf(a));
             }
-            previousOperator = operation;
-            viewInterface.showResult(String.valueOf(a));
+            b = 0.0;
         }
+        previousOperator = operation;
+        viewInterface.showResult(String.valueOf(a));
         metod();
     }
 
@@ -130,7 +128,6 @@ public class CalculatorPresenter {
     private void metod() {
         stack.clean();
         stackDi.clean();
-        //MainActivity.click = false;
         MainActivity.i = 0;
     }
 
