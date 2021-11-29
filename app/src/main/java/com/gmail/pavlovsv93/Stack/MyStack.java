@@ -50,7 +50,7 @@ public class MyStack<T> {
         if (isEmpty()) {
             throw new EmptyStackException();
         }
-        return this.stack[--size];
+        return this.stack[size-1];
     }
 
     public int size() {

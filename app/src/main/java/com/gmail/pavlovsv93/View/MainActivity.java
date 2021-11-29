@@ -17,8 +17,8 @@ public class MainActivity extends AppCompatActivity implements CalculatorViewInt
     private TextView viewResult;
     private TextView viewHistory;
     private CalculatorPresenter presenter;
-    public static int i = 0;
-    public static boolean click = false;
+    private static int i = 0;
+    private static boolean click = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,9 @@ public class MainActivity extends AppCompatActivity implements CalculatorViewInt
         findViewById(R.id.key_equally).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.onOperationPressed(presenter.getPreviousOperator());
+                presenter.onOperationEqually();
+                click = false;
+                i = 0;
             }
         });
 
@@ -61,10 +63,8 @@ public class MainActivity extends AppCompatActivity implements CalculatorViewInt
             public void onClick(View v) {
                 if (click) {
                     i++;
-                    presenter.onNumberDiPressed(mapNumber.get(v.getId()), i);
-                    return;
                 }
-                presenter.onNumberPressed(mapNumber.get(v.getId()));
+                presenter.onNumberPressed(mapNumber.get(v.getId()), click, i);
 
             }
         };
@@ -85,13 +85,13 @@ public class MainActivity extends AppCompatActivity implements CalculatorViewInt
         mapOperation.put(R.id.key_minus, CalculatorOperation.SUB);
         mapOperation.put(R.id.key_multiply, CalculatorOperation.MULT);
         mapOperation.put(R.id.key_divide, CalculatorOperation.DIV);
-        mapOperation.put(R.id.key_plus_minus, CalculatorOperation.SUMB);
 
         View.OnClickListener operationClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 presenter.onOperationPressed(mapOperation.get(v.getId()));
                 click = false;
+                i = 0;
             }
         };
 
@@ -99,19 +99,33 @@ public class MainActivity extends AppCompatActivity implements CalculatorViewInt
         findViewById(R.id.key_minus).setOnClickListener(operationClickListener);
         findViewById(R.id.key_multiply).setOnClickListener(operationClickListener);
         findViewById(R.id.key_divide).setOnClickListener(operationClickListener);
-        findViewById(R.id.key_plus_minus).setOnClickListener(operationClickListener);
+
+        findViewById(R.id.key_plus_minus).setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                presenter.onOperationPlusMinus(CalculatorOperation.SUMB);
+            }
+        });
 
         findViewById(R.id.key_clean).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 presenter.cleanCalculator();
+                click = false;
+                i = 0;
+
             }
         });
 
         findViewById(R.id.key_del).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.deleteLastElement();
+                presenter.deleteLastElement(click, i);
+                if(click && i > 0) {
+                    i--;
+                } else {
+                    click = false;
+                }
             }
         });
 

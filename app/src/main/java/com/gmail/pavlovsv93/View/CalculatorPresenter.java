@@ -6,6 +6,7 @@ import com.gmail.pavlovsv93.Calculator.CalculatorInterface;
 import com.gmail.pavlovsv93.Calculator.CalculatorOperation;
 import com.gmail.pavlovsv93.Stack.MyStack;
 
+import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 import javax.xml.transform.sax.SAXResult;
@@ -15,7 +16,6 @@ public class CalculatorPresenter {
     private CalculatorViewInterface viewInterface;
     private CalculatorInterface calculatorInterface;
     private MyStack<Integer> stack = new MyStack<>();
-    private MyStack<Double> stackDi = new MyStack<>();
     private Double a = 0.0;
     private Double b = null;
     private CalculatorOperation previousOperator = null;
@@ -33,43 +33,69 @@ public class CalculatorPresenter {
         return true;
     }
 
-    public void onNumberPressed(int number) {
+    public void onNumberPressed(int number, boolean click, int i) {
         stack.push(number);
-        if (previousOperator != null) {
-            b = Double.valueOf(b * 10 + number);
-            viewInterface.showResult(String.valueOf(b));
+        if (previousOperator == CalculatorOperation.EQU) {
+            a = 0.0;
+            b = null;
+            previousOperator = null;
+        }
+        if (!click) {
+            if (previousOperator != null) {
+                b = Double.valueOf(b * 10 + number);
+                viewInterface.showResult(String.valueOf(b));
+            } else {
+                a = a * 10 + number;
+                viewInterface.showResult(String.valueOf(a));
+            }
         } else {
-            a = a * 10 + number;
-            viewInterface.showResult(String.valueOf(a));
+            if (previousOperator != null) {
+                b = round((b + (number / Math.pow(10, i))), i);
+                if (number == 0) {
+                    viewInterface.showResult(String.valueOf(b) + "0");
+                } else {
+                    viewInterface.showResult(String.valueOf(b));
+                }
+            } else {
+                a = round((a + (number / Math.pow(10, i))), i);
+                if (number == 0 && i != 1) {
+                    viewInterface.showResult(String.valueOf(a) + "0");
+                } else {
+                    viewInterface.showResult(String.valueOf(a));
+                }
+            }
         }
     }
 
-    public void onNumberDiPressed(int number, int i) {
-        stackDi.push(Double.valueOf(number));
+    public void onOperationEqually() {
+        if (b != null && previousOperator != null && previousOperator != CalculatorOperation.EQU) {
+            Double result = calculatorInterface.resultOperation(a, b, getPreviousOperator());
+            String str = String.valueOf(a) + " " + convert(previousOperator) + " " + String.valueOf(b) + " = " + result;
+            a = result;
+            showHistoryView(str);
+            viewInterface.showResult(String.valueOf(a));
+            previousOperator = CalculatorOperation.EQU;
+            b = 0.0;
+            stack.clean();
+
+        }
+    }
+
+    public void onOperationPlusMinus(CalculatorOperation operation) {
         if (previousOperator != null) {
-            b = Double.valueOf(b + (number / Math.pow(10, i)));
-            Math.round(b * Math.pow(10, i));
+            b = calculatorInterface.resultOperation(Double.valueOf(b), -1, operation);
             viewInterface.showResult(String.valueOf(b));
         } else {
-            a = a + (number / Math.pow(10, i));
-            Math.round(a * Math.pow(10, i));
+            a = calculatorInterface.resultOperation(a, -1, operation);
             viewInterface.showResult(String.valueOf(a));
         }
     }
 
     public void onOperationPressed(CalculatorOperation operation) {
-        if (operation == null) {
+        if (operation == CalculatorOperation.EQU || operation == previousOperator) {
             viewInterface.showResult(String.valueOf(a));
-        } else if (clickSuMB(operation)) {
-            if (b != null) {
-                b = calculatorInterface.resultOperation(Double.valueOf(b), -1, operation);
-                viewInterface.showResult(String.valueOf(b));
-            } else {
-                a = calculatorInterface.resultOperation(a, -1, operation);
-                viewInterface.showResult(String.valueOf(a));
-            }
-        } else if (previousOperator != null) {
-            showHistoryView(String.valueOf(previousOperator));
+        } else if (previousOperator != null && previousOperator != CalculatorOperation.EQU) {
+            showHistoryView(convert(previousOperator));
             a = calculatorInterface.resultOperation(a, b, previousOperator);
             showHistoryView(String.valueOf(b));
             b = 0.0;
@@ -81,67 +107,61 @@ public class CalculatorPresenter {
         }
         previousOperator = operation;
         viewInterface.showResult(String.valueOf(a));
-        metod();
-    }
-
-    private boolean clickSuMB(CalculatorOperation operation) {
-        if (CalculatorOperation.SUMB == operation) {
-            return true;
-        }
-        return false;
+        stack.clean();
     }
 
     public void cleanCalculator() {
         a = 0.0;
         b = null;
         previousOperator = null;
-        metod();
+        stack.clean();
         viewInterface.showHistory(null);
         viewInterface.showResult(String.valueOf(a));
     }
 
-    public void deleteLastElement() {
-        if (stackDi.size() == 1) {
-            MainActivity.click = false;
-        }
-        if (!stackDi.isEmpty()) {
+    public void deleteLastElement(boolean click, int i) {
+        if (click && !stack.isEmpty() && i > 0) {
             if (previousOperator != null) {
-                b = (b - stackDi.peek() / Math.pow(10, stackDi.size() + 1));
-                MainActivity.i--;
+                b = round((b - stack.pop() / Math.pow(10, i)), i);
                 viewInterface.showResult(String.valueOf(b));
             } else {
-                a = (a - stackDi.peek() / Math.pow(10, stackDi.size() + 1));
-                MainActivity.i--;
+                a = round((a - stack.pop() / Math.pow(10, i)), i);
                 viewInterface.showResult(String.valueOf(a));
             }
         } else if (!stack.isEmpty()) {
             if (previousOperator != null) {
-                b = (b - stack.peek()) / 10;
+                b = (b - stack.pop()) / 10;
                 viewInterface.showResult(String.valueOf(b));
             } else {
-                a = (a - stack.peek()) / 10;
+                a = (a - stack.pop()) / 10;
                 viewInterface.showResult(String.valueOf(a));
             }
         }
     }
 
-    private void metod() {
-        stack.clean();
-        stackDi.clean();
-        MainActivity.i = 0;
-    }
-
     private void showHistoryView(String str) {
-        if ("SUM" == str) {
-            str = "+";
-        } else if ("SUB" == str) {
-            str = "-";
-        } else if ("MULT" == str) {
-            str = "*";
-        } else if ("DIV" == str) {
-            str = "/";
-        }
         str = viewInterface.getHistory() + " " + str + "\n";
         viewInterface.showHistory(str);
+    }
+
+    private String convert(CalculatorOperation operation) {
+        String str = null;
+        if (CalculatorOperation.SUM == operation) {
+            str = "+";
+        } else if (CalculatorOperation.SUB == operation) {
+            str = "-";
+        } else if (CalculatorOperation.MULT == operation) {
+            str = "*";
+        } else if (CalculatorOperation.DIV == operation) {
+            str = "÷";
+        }
+        return str;
+    }
+
+    private double round(Double ch, int i) {
+        if (i<0) throw new IllegalArgumentException();
+        BigDecimal bd = new BigDecimal(Double.toString(ch));
+        bd = bd.setScale(i, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 }

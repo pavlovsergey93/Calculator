@@ -6,11 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".View.MainActivity">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="center"
-        android:src="@drawable/calculator_background" />
+
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll_view"
@@ -265,5 +261,6 @@
         app:layout_constraintEnd_toEndOf="@id/key_clean"
         app:layout_constraintStart_toStartOf="@id/key_clean"
         app:layout_constraintTop_toBottomOf="@id/key_clean" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
