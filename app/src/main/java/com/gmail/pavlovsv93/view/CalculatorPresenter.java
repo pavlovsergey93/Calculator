@@ -1,15 +1,11 @@
-package com.gmail.pavlovsv93.View;
+package com.gmail.pavlovsv93.view;
 
-import android.widget.TextView;
-
-import com.gmail.pavlovsv93.Calculator.CalculatorInterface;
-import com.gmail.pavlovsv93.Calculator.CalculatorOperation;
-import com.gmail.pavlovsv93.Stack.MyStack;
+import com.gmail.pavlovsv93.сalculator.CalculatorInterface;
+import com.gmail.pavlovsv93.сalculator.CalculatorOperation;
+import com.gmail.pavlovsv93.stack.MyStack;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-
-import javax.xml.transform.sax.SAXResult;
 
 public class CalculatorPresenter {
 

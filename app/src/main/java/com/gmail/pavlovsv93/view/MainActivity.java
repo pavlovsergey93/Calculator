@@ -1,28 +1,34 @@
-package com.gmail.pavlovsv93.View;
+package com.gmail.pavlovsv93.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.gmail.pavlovsv93.Calculator.Calculator;
-import com.gmail.pavlovsv93.Calculator.CalculatorOperation;
+import com.gmail.pavlovsv93.сalculator.Calculator;
+import com.gmail.pavlovsv93.сalculator.CalculatorOperation;
 import com.gmail.pavlovsv93.R;
 
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements CalculatorViewInterface {
 
+    private static final String ARG_THEME = "ARG_THEME";
     private TextView viewResult;
     private TextView viewHistory;
     private CalculatorPresenter presenter;
     private static int i = 0;
     private static boolean click = false;
+    private int currentTheme = R.style.Theme_Calculator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setTheme(getSaveTheme());
         setContentView(R.layout.activity_main);
 
         presenter = new CalculatorPresenter(this, new Calculator());
@@ -100,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements CalculatorViewInt
         findViewById(R.id.key_multiply).setOnClickListener(operationClickListener);
         findViewById(R.id.key_divide).setOnClickListener(operationClickListener);
 
-        findViewById(R.id.key_plus_minus).setOnClickListener(new View.OnClickListener(){
+        findViewById(R.id.key_plus_minus).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 presenter.onOperationPlusMinus(CalculatorOperation.SUMB);
@@ -121,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements CalculatorViewInt
             @Override
             public void onClick(View v) {
                 presenter.deleteLastElement(click, i);
-                if(click && i > 0) {
+                if (click && i > 0) {
                     i--;
                 } else {
                     click = false;
@@ -129,6 +135,27 @@ public class MainActivity extends AppCompatActivity implements CalculatorViewInt
             }
         });
 
+        findViewById(R.id.setting).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getSaveTheme() == R.style.Theme_Calculator) {
+                    saveTheme(R.style.Theme_Calculator_two);
+                } else {
+                    saveTheme(R.style.Theme_Calculator);
+                }
+                recreate();
+            }
+        });
+    }
+
+    private void saveTheme(int theme) {
+        SharedPreferences sp = getSharedPreferences("Theme", Context.MODE_PRIVATE);
+        sp.edit().putInt(ARG_THEME, theme).apply();
+    }
+
+    private int getSaveTheme() {
+        SharedPreferences sp = getSharedPreferences("Theme", Context.MODE_PRIVATE);
+        return sp.getInt(ARG_THEME, R.style.Theme_Calculator);
     }
 
     @Override

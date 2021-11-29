@@ -1,4 +1,4 @@
-package com.gmail.pavlovsv93.View;
+package com.gmail.pavlovsv93.view;
 
 public interface CalculatorViewInterface {
 

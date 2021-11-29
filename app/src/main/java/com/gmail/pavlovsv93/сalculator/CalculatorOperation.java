@@ -1,4 +1,4 @@
-package com.gmail.pavlovsv93.Calculator;
+package com.gmail.pavlovsv93.сalculator;
 
 import androidx.annotation.StringRes;
 

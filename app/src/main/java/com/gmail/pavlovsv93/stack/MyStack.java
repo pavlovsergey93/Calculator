@@ -1,4 +1,4 @@
-package com.gmail.pavlovsv93.Stack;
+package com.gmail.pavlovsv93.stack;
 
 import java.util.EmptyStackException;
 

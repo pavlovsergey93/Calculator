@@ -254,4 +254,12 @@
         android:layout_width="@dimen/zero_size"
         android:layout_height="@dimen/zero_size"
         android:text="@string/key_equally" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_baseline_settings_24"
+        app:backgroundTint="@color/maroon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
