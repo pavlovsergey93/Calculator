@@ -14,9 +14,11 @@
         <!-- Customize your theme here. -->
         <item name="android:background">@drawable/calculator_background</item>
     </style>
+
     <style name="Theme.Calculator.two">
         <item name="android:background">@drawable/snow_background</item>
     </style>
+
     <style name="Theme.Calculator.three">
 
     </style>

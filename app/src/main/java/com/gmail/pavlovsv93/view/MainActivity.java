@@ -5,6 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.method.MovementMethod;
+import android.text.method.ScrollingMovementMethod;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -20,8 +25,8 @@ public class MainActivity extends AppCompatActivity implements CalculatorViewInt
     private TextView viewResult;
     private TextView viewHistory;
     private CalculatorPresenter presenter;
-    private static int i = 0;
-    private static boolean click = false;
+    private int i = 0;
+    private boolean click = false;
     private int currentTheme = R.style.Theme_Calculator;
 
     @Override
@@ -165,6 +170,8 @@ public class MainActivity extends AppCompatActivity implements CalculatorViewInt
 
     @Override
     public void showHistory(String history) {
+
+        viewHistory.setMovementMethod(new ScrollingMovementMethod());
         viewHistory.setText(history);
     }
 
@@ -172,4 +179,8 @@ public class MainActivity extends AppCompatActivity implements CalculatorViewInt
     public String getHistory() {
         return String.valueOf(viewHistory.getText());
     }
+
+
+
+
 }

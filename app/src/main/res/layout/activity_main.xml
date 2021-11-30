@@ -10,39 +10,31 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="center" />
-    <!--android:src="@drawable/calculator_background"  -->
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/scroll_view"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/history"
+        style="@style/TextViewHistory"
         android:layout_width="@dimen/zero_size"
         android:layout_height="@dimen/zero_size"
-        android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/view_result"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_weight="@integer/weight_4">
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/history"
-            style="@style/text_view_history"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </androidx.core.widget.NestedScrollView>
+        app:layout_constraintVertical_weight="@integer/weight_4" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/view_result"
-        style="@style/text_view"
+        style="@style/TextViewResult"
         android:layout_width="@dimen/zero_size"
         android:layout_height="@dimen/zero_size"
         app:layout_constraintBottom_toTopOf="@id/key_7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scroll_view" />
+        app:layout_constraintTop_toBottomOf="@+id/history" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_7"
-        style="@style/number_button"
+        style="@style/NumberButton"
         android:layout_width="@dimen/zero_size"
         android:layout_height="@dimen/zero_size"
         android:text="@string/key_7"
@@ -52,10 +44,9 @@
         app:layout_constraintTop_toBottomOf="@+id/view_result"
         app:layout_constraintWidth_percent=".26" />
 
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_8"
-        style="@style/number_button"
+        style="@style/NumberButton"
         android:layout_width="@dimen/zero_size"
         android:layout_height="@dimen/zero_size"
         android:text="@string/key_8"
@@ -67,7 +58,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_9"
-        style="@style/number_button"
+        style="@style/NumberButton"
         android:layout_width="@dimen/zero_size"
         android:layout_height="@dimen/zero_size"
         android:text="@string/key_9"
@@ -79,7 +70,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_del"
-        style="@style/operation_button_2"
+        style="@style/OperationButton2"
         android:layout_width="@dimen/zero_size"
         android:layout_height="@dimen/zero_size"
         android:text="@string/key_del"
@@ -91,7 +82,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_4"
-        style="@style/number_button"
+        style="@style/NumberButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="@string/key_4"
@@ -102,7 +93,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_5"
-        style="@style/number_button"
+        style="@style/NumberButton"
         android:layout_width="@dimen/zero_size"
         android:layout_height="@dimen/zero_size"
         android:text="@string/key_5"
@@ -114,7 +105,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_6"
-        style="@style/number_button"
+        style="@style/NumberButton"
         android:layout_width="@dimen/zero_size"
         android:layout_height="@dimen/zero_size"
         android:text="@string/key_6"
@@ -126,7 +117,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_clean"
-        style="@style/operation_button_2"
+        style="@style/OperationButton2"
         android:layout_width="@dimen/zero_size"
         android:layout_height="@dimen/zero_size"
         android:text="@string/key_clean"
@@ -137,7 +128,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_1"
-        style="@style/number_button"
+        style="@style/NumberButton"
         android:layout_width="@dimen/zero_size"
         android:layout_height="@dimen/zero_size"
         android:text="@string/key_1"
@@ -149,7 +140,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_2"
-        style="@style/number_button"
+        style="@style/NumberButton"
         android:layout_width="@dimen/zero_size"
         android:layout_height="@dimen/zero_size"
         android:text="@string/key_2"
@@ -160,7 +151,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_3"
-        style="@style/number_button"
+        style="@style/NumberButton"
         android:layout_width="@dimen/zero_size"
         android:layout_height="@dimen/zero_size"
         android:text="@string/key_3"
@@ -171,7 +162,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_summa"
-        style="@style/operation_button"
+        style="@style/OperationButton"
         android:layout_width="@dimen/zero_size"
         android:layout_height="@dimen/zero_size"
         android:text="@string/key_summa"
@@ -183,7 +174,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_0"
-        style="@style/number_button"
+        style="@style/NumberButton"
         android:layout_width="@dimen/zero_size"
         android:layout_height="@dimen/zero_size"
         android:text="@string/key_0"
@@ -195,7 +186,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_dot"
-        style="@style/number_button"
+        style="@style/NumberButton"
         android:layout_width="@dimen/zero_size"
         android:layout_height="@dimen/zero_size"
         android:text="@string/key_dot"
@@ -206,7 +197,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_plus_minus"
-        style="@style/number_button"
+        style="@style/NumberButton"
         android:layout_width="@dimen/zero_size"
         android:layout_height="@dimen/zero_size"
         android:text="@string/key_plus_minus"
@@ -217,7 +208,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_minus"
-        style="@style/operation_button"
+        style="@style/OperationButton"
         android:layout_width="@dimen/zero_size"
         android:layout_height="@dimen/zero_size"
         android:text="@string/key_minus"
@@ -229,7 +220,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_multiply"
-        style="@style/operation_button"
+        style="@style/OperationButton"
         android:layout_width="@dimen/zero_size"
         android:layout_height="@dimen/zero_size"
         android:text="@string/key_multiply"
@@ -241,7 +232,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_divide"
-        style="@style/operation_button"
+        style="@style/OperationButton"
         android:layout_width="@dimen/zero_size"
         android:layout_height="@dimen/zero_size"
         android:text="@string/key_divide"
@@ -253,7 +244,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_equally"
-        style="@style/operation_button_3"
+        style="@style/OperationButton3"
         android:layout_width="@dimen/zero_size"
         android:layout_height="@dimen/zero_size"
         android:text="@string/key_equally"
@@ -264,10 +255,11 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/setting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/setting_size"
+        android:layout_height="@dimen/setting_size"
         android:background="@drawable/ic_baseline_settings_24"
         app:backgroundTint="@color/maroon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

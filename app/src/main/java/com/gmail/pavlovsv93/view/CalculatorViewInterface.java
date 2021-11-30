@@ -7,5 +7,6 @@ public interface CalculatorViewInterface {
     void showHistory(String history);
 
     String getHistory();
+
 }
 
