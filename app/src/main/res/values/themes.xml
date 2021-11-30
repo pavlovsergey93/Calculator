@@ -19,7 +19,7 @@
         <item name="android:background">@drawable/snow_background</item>
     </style>
 
-    <style name="Theme.Calculator.three">
+    <!--<style name="Theme.Calculator.three">
 
-    </style>
+    </style>-->
 </resources>
