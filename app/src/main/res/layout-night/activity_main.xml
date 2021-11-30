@@ -6,11 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".view.MainActivity">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="center" />
-
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/history"
         style="@style/TextViewHistory"
@@ -85,11 +80,15 @@
         style="@style/NumberButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:backgroundTint="@color/orange_80"
         android:text="@string/key_4"
+        android:textColor="@color/maroon"
+        android:textSize="35sp"
         app:layout_constraintBottom_toTopOf="@id/key_1"
         app:layout_constraintEnd_toEndOf="@id/key_7"
         app:layout_constraintStart_toStartOf="@id/key_7"
-        app:layout_constraintTop_toBottomOf="@id/key_7" />
+        app:layout_constraintTop_toBottomOf="@id/key_7"
+        app:layout_constraintVertical_weight="2" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/key_5"

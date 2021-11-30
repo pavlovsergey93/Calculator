@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/GB.ru/Calculator/app/src/main/res/drawable/ic_launcher_orange_foreground.xml" value="0.14635416666666667" />
+        <entry key="..\:/GB.ru/Calculator/app/src/main/res/layout-land-night/activity_main.xml" value="0.1" />
+        <entry key="..\:/GB.ru/Calculator/app/src/main/res/layout-land-notnight/activity_main.xml" value="0.21516754850088182" />
+        <entry key="..\:/GB.ru/Calculator/app/src/main/res/layout-night/activity_main.xml" value="0.13020833333333334" />
         <entry key="..\:/GB.ru/Calculator/app/src/main/res/layout/activity_main.xml" value="0.176" />
         <entry key="..\:/GB.ru/Calculator/app/src/main/res/mipmap-anydpi-v26/ic_launcher_orange.xml" value="0.14635416666666667" />
         <entry key="..\:/GB.ru/Calculator/app/src/main/res/mipmap-anydpi-v26/ic_launcher_orange_round.xml" value="0.14635416666666667" />
