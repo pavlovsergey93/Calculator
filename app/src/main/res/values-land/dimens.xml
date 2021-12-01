@@ -8,4 +8,8 @@
     <dimen name="operation_text_size_little">10sp</dimen>
     <dimen name="zero_size">0dp</dimen>
     <dimen name="radius">50dp</dimen>
+    <dimen name="setting_size">35dp</dimen>
+    <dimen name="default_padding">16dp</dimen>
+    <dimen name="default_padding_top_bot">8dp</dimen>
+    <dimen name="text_list">35dp</dimen>
 </resources>

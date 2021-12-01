@@ -19,6 +19,9 @@
     <string name="key_del">[DEL]</string>
     <string name="key_equally">=</string>
     <string name="key_plus_minus">+/-</string>
+    <string name="theme_one">Theme One</string>
+    <string name="theme_two">Theme Two</string>
+    <string name="theme_three">Theme Three</string>
 
->>>>>>> master
+    >>>>>>> master
 </resources>

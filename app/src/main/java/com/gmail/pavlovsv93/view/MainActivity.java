@@ -1,43 +1,71 @@
 package com.gmail.pavlovsv93.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
-import android.text.Spannable;
-import android.text.method.MovementMethod;
 import android.text.method.ScrollingMovementMethod;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.gmail.pavlovsv93.R;
+import com.gmail.pavlovsv93.theme.ListThemeActivity;
+import com.gmail.pavlovsv93.theme.Theme;
+import com.gmail.pavlovsv93.theme.ThemeStorage;
 import com.gmail.pavlovsv93.сalculator.Calculator;
 import com.gmail.pavlovsv93.сalculator.CalculatorOperation;
-import com.gmail.pavlovsv93.R;
 
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements CalculatorViewInterface {
 
-    private static final String ARG_THEME = "ARG_THEME";
+
+    //   private static final String ARG_SAVE = "ARG_SAVE";
     private TextView viewResult;
     private TextView viewHistory;
     private CalculatorPresenter presenter;
     private int i = 0;
     private boolean click = false;
     private int currentTheme = R.style.Theme_Calculator;
+    private ThemeStorage ts;
+
+    private final ActivityResultLauncher<Intent> launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        @Override
+        public void onActivityResult(ActivityResult result) {
+            if (result.getResultCode() == Activity.RESULT_OK) {
+                Theme theme = (Theme) result.getData().getSerializableExtra(ListThemeActivity.EXTRA_THEME);
+
+                ts.saveTheme(theme);
+
+                Toast.makeText(MainActivity.this, theme.getName(), Toast.LENGTH_SHORT).show();
+
+                recreate();
+            }
+        }
+    });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        ts = new ThemeStorage(this);
 
-        setTheme(getSaveTheme());
+        setTheme(ts.getSaveTheme().getTheme());
+
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        presenter = new CalculatorPresenter(this, new Calculator());
+//        if (savedInstanceState == null){
+//
+//        }else {
+//            presenter = savedInstanceState.getParcelable(ARG_SAVE);
+//        }
 
+        presenter = new CalculatorPresenter(this, new Calculator());
         viewResult = findViewById(R.id.view_result);
         viewHistory = findViewById(R.id.history);
 
@@ -140,28 +168,27 @@ public class MainActivity extends AppCompatActivity implements CalculatorViewInt
             }
         });
 
+
         findViewById(R.id.setting).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getSaveTheme() == R.style.Theme_Calculator) {
+                Intent intent = new Intent(MainActivity.this, ListThemeActivity.class);
+                intent.putExtra(ListThemeActivity.EXTRA_THEME, ts.getSaveTheme());
+                //startActivity(intent);
+                launcher.launch(intent);
+
+/*                if (getSaveTheme() == R.style.Theme_Calculator) {
                     saveTheme(R.style.Theme_Calculator_two);
                 } else {
                     saveTheme(R.style.Theme_Calculator);
                 }
                 recreate();
+ */
             }
         });
     }
 
-    private void saveTheme(int theme) {
-        SharedPreferences sp = getSharedPreferences("Theme", Context.MODE_PRIVATE);
-        sp.edit().putInt(ARG_THEME, theme).apply();
-    }
 
-    private int getSaveTheme() {
-        SharedPreferences sp = getSharedPreferences("Theme", Context.MODE_PRIVATE);
-        return sp.getInt(ARG_THEME, R.style.Theme_Calculator);
-    }
 
     @Override
     public void showResult(String result) {
@@ -180,7 +207,15 @@ public class MainActivity extends AppCompatActivity implements CalculatorViewInt
         return String.valueOf(viewHistory.getText());
     }
 
+    @Override
+    public String getResult() {
+        return String.valueOf(viewResult.getText());
+    }
 
-
-
+//    @Override
+//    protected void onSaveInstanceState(@NonNull Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//
+//        outState.putParcelable(ARG_SAVE,presenter);
+//    }
 }

@@ -31,9 +31,8 @@
         <item name="layout_constraintVertical_weight">@integer/weight_1</item>
     </style>
 
-    <style name="TextViewHistory.TextViewResult">
+    <style name="TextViewHistory" parent="TextViewResult">
         <item name="android:textSize">@dimen/history_text_size</item>
-        <item name="android:background">@color/orange_50</item>
         <item name="android:scrollbars">vertical</item>
     </style>
 

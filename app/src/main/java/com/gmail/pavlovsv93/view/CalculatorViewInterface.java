@@ -8,5 +8,7 @@ public interface CalculatorViewInterface {
 
     String getHistory();
 
+    String getResult();
+
 }
 

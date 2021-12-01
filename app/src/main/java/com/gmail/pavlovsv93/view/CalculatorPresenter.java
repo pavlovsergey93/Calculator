@@ -1,13 +1,13 @@
 package com.gmail.pavlovsv93.view;
 
+import com.gmail.pavlovsv93.stack.MyStack;
 import com.gmail.pavlovsv93.сalculator.CalculatorInterface;
 import com.gmail.pavlovsv93.сalculator.CalculatorOperation;
-import com.gmail.pavlovsv93.stack.MyStack;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class CalculatorPresenter {
+public class CalculatorPresenter /*implements Parcelable*/ {
 
     private CalculatorViewInterface viewInterface;
     private CalculatorInterface calculatorInterface;
@@ -15,6 +15,56 @@ public class CalculatorPresenter {
     private Double a = 0.0;
     private Double b = null;
     private CalculatorOperation previousOperator = null;
+
+//    protected CalculatorPresenter(Parcel in) {
+//        if (in.readByte() == 0) {
+//            a = null;
+//        } else {
+//            a = in.readDouble();
+//        }
+//        if (in.readByte() == 0) {
+//            b = null;
+//        } else {
+//            b = in.readDouble();
+//        }
+//        viewInterface.showHistory(in.toString());
+//        viewInterface.showResult(in.readString());
+//    }
+//
+//    @Override
+//    public void writeToParcel(Parcel dest, int flags) {
+//        if (a == null) {
+//            dest.writeByte((byte) 0);
+//        } else {
+//            dest.writeByte((byte) 1);
+//            dest.writeDouble(a);
+//        }
+//        if (b == null) {
+//            dest.writeByte((byte) 0);
+//        } else {
+//            dest.writeByte((byte) 1);
+//            dest.writeDouble(b);
+//        }
+//        dest.writeString(viewInterface.getHistory());
+//        dest.writeString(viewInterface.getResult());
+//    }
+//
+//    @Override
+//    public int describeContents() {
+//        return 0;
+//    }
+//
+//    public static final Creator<CalculatorPresenter> CREATOR = new Creator<CalculatorPresenter>() {
+//        @Override
+//        public CalculatorPresenter createFromParcel(Parcel in) {
+//            return new CalculatorPresenter(in);
+//        }
+//
+//        @Override
+//        public CalculatorPresenter[] newArray(int size) {
+//            return new CalculatorPresenter[size];
+//        }
+//    };
 
     public CalculatorOperation getPreviousOperator() {
         return previousOperator;
