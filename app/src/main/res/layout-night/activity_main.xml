@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MainActivity">
+    tools:context=".view.CalculatorActivity">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/history"
         style="@style/TextViewHistory"
         android:layout_width="@dimen/zero_size"
         android:layout_height="@dimen/zero_size"
+        android:background="@color/black"
         app:layout_constraintBottom_toTopOf="@id/view_result"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -80,10 +81,7 @@
         style="@style/NumberButton"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:backgroundTint="@color/orange_80"
         android:text="@string/key_4"
-        android:textColor="@color/maroon"
-        android:textSize="35sp"
         app:layout_constraintBottom_toTopOf="@id/key_1"
         app:layout_constraintEnd_toEndOf="@id/key_7"
         app:layout_constraintStart_toStartOf="@id/key_7"

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -40,7 +41,7 @@ public class ListThemeActivity extends AppCompatActivity {
                     Intent data = new Intent();
                     data.putExtra(EXTRA_THEME, theme);
                     setResult(Activity.RESULT_OK, data);
-
+                    Toast.makeText(ListThemeActivity.this, theme.getName(), Toast.LENGTH_SHORT).show();
                     finish();
                 }
             });

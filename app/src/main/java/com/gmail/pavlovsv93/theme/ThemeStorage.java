@@ -18,15 +18,15 @@ public class ThemeStorage {
         SharedPreferences sp = context.getSharedPreferences("Theme", Context.MODE_PRIVATE);
 
         sp.edit()
-                .putString(ARG_THEME, theme.getKey())
+                .putInt(ARG_THEME, theme.getKey())
                 .apply();
     }
 
     public Theme getSaveTheme() {
         SharedPreferences sp = context.getSharedPreferences("Theme", Context.MODE_PRIVATE);
-        String key = sp.getString(ARG_THEME, Theme.ONE.getKey());
+        int key = sp.getInt(ARG_THEME, Theme.ONE.getKey());
         for (Theme theme : Theme.values()) {
-            if (key.equals(theme.getKey())) {
+            if (key == theme.getKey()) {
                 return theme;
             }
         }

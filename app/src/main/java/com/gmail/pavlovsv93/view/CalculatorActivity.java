@@ -6,12 +6,12 @@ import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.gmail.pavlovsv93.R;
@@ -23,27 +23,24 @@ import com.gmail.pavlovsv93.сalculator.CalculatorOperation;
 
 import java.util.HashMap;
 
-public class MainActivity extends AppCompatActivity implements CalculatorViewInterface {
+public class CalculatorActivity extends AppCompatActivity implements CalculatorViewInterface {
 
-
-    //   private static final String ARG_SAVE = "ARG_SAVE";
+    private static final String SAVE_PRES = "SAVE_PRES";
     private TextView viewResult;
     private TextView viewHistory;
     private CalculatorPresenter presenter;
     private int i = 0;
     private boolean click = false;
-    private int currentTheme = R.style.Theme_Calculator;
     private ThemeStorage ts;
 
     private final ActivityResultLauncher<Intent> launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
         public void onActivityResult(ActivityResult result) {
             if (result.getResultCode() == Activity.RESULT_OK) {
+
                 Theme theme = (Theme) result.getData().getSerializableExtra(ListThemeActivity.EXTRA_THEME);
 
                 ts.saveTheme(theme);
-
-                Toast.makeText(MainActivity.this, theme.getName(), Toast.LENGTH_SHORT).show();
 
                 recreate();
             }
@@ -58,16 +55,14 @@ public class MainActivity extends AppCompatActivity implements CalculatorViewInt
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        if (savedInstanceState == null){
-//
-//        }else {
-//            presenter = savedInstanceState.getParcelable(ARG_SAVE);
-//        }
-
-        presenter = new CalculatorPresenter(this, new Calculator());
         viewResult = findViewById(R.id.view_result);
         viewHistory = findViewById(R.id.history);
+
+        presenter = new CalculatorPresenter(this, new Calculator());
+        if (savedInstanceState != null) {
+            presenter.resState(savedInstanceState);
+        }
+
 
         findViewById(R.id.key_dot).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -172,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements CalculatorViewInt
         findViewById(R.id.setting).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, ListThemeActivity.class);
+                Intent intent = new Intent(CalculatorActivity.this, ListThemeActivity.class);
                 intent.putExtra(ListThemeActivity.EXTRA_THEME, ts.getSaveTheme());
                 //startActivity(intent);
                 launcher.launch(intent);
@@ -187,7 +182,6 @@ public class MainActivity extends AppCompatActivity implements CalculatorViewInt
             }
         });
     }
-
 
 
     @Override
@@ -212,10 +206,9 @@ public class MainActivity extends AppCompatActivity implements CalculatorViewInt
         return String.valueOf(viewResult.getText());
     }
 
-//    @Override
-//    protected void onSaveInstanceState(@NonNull Bundle outState) {
-//        super.onSaveInstanceState(outState);
-//
-//        outState.putParcelable(ARG_SAVE,presenter);
-//    }
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        presenter.onSaveState(outState);
+    }
 }

@@ -7,9 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="white_50">#4DFFFFFF</color>
     <color name="orange">#FF4500</color>
-    <color name="orange_80">#80FF8C00</color>
-    <color name="orange_50">#50FF8C00</color>
+    <color name="grey_80">#807A7876</color>
+    <color name="orange_80">#80FF4500</color>
+    <color name="black_50">#80000000</color>
     <color name="maroon">#800000</color>
     <color name="maroon_40">#40800000</color>
     <color name="green">#00FF0A</color>
